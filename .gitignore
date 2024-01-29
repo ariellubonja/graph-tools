@@ -1,0 +1,6 @@
+analysis/.ipynb_checkpoints
+creation/.ipynb_checkpoints
+creation/erdos-renyi-graphs
+creation/erdos-renyi-networkit-graphs
+.DS_Store
+.idea/
