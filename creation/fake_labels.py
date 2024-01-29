@@ -2,7 +2,7 @@ import os
 import numpy as np
 
 
-root_directory = input('Enter path to directory of .NPY files to create fake node labels for: \n')
+root_directory = input('Enter absolute path to directory of .NPY files to create fake node labels for: \n')
 
 def create_fake_labels(dirpath, file):
     G = np.load(os.path.join(dirpath, file))
@@ -23,7 +23,8 @@ def create_fake_labels(dirpath, file):
     sparse_labels[0]=49
 
     # Save
-    output_dir = os.path.join(dirpath, 'Ys')
+    base_dir = os.path.dirname(dirpath)  # Move one level up from NPY directory
+    output_dir = os.path.join(base_dir, 'Ys')
     os.makedirs(output_dir, exist_ok=True)
     output_file = os.path.splitext(file)[0] + '.npy'
     np.save(os.path.join(output_dir, output_file), sparse_labels)
@@ -32,6 +33,6 @@ def create_fake_labels(dirpath, file):
 
 for dirpath, dirnames, files in os.walk(root_directory):
     for file in files:
-        if file.endswith('.edgelist'):
+        if file.endswith('.npy'):
             create_fake_labels(dirpath, file)
             
