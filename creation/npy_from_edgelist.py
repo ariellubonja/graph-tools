@@ -6,7 +6,7 @@ root_directory = input('Enter path to directory of .edgelist files to convert to
 
 def convert_to_npy(dirpath, file):
     G = np.loadtxt(os.path.join(dirpath, file), dtype=int)
-    np.save(os.path.join(os.path.join(dirpath, 'NPY'), os.path.splitext(file)[0] + '.npy')), G)
+    np.save(os.path.join(os.path.join(dirpath, 'NPY'), os.path.splitext(file)[0] + '.npy'), G)
     
 
 for dirpath, dirnames, files in os.walk(root_directory):
