@@ -24,10 +24,17 @@ def create_fake_labels(dirpath, file):
 
     # Save
     base_dir = os.path.dirname(dirpath)  # Move one level up from NPY directory
+    output_dir = os.path.join(base_dir, 'Ys-NPY')
+    os.makedirs(output_dir, exist_ok=True)
+
     output_dir = os.path.join(base_dir, 'Ys')
     os.makedirs(output_dir, exist_ok=True)
+
     output_file = os.path.splitext(file)[0] + '.npy'
     np.save(os.path.join(output_dir, output_file), sparse_labels)
+
+    output_file = os.path.splitext(file)[0] + '.csv'
+    np.savetxt(os.path.join(output_dir, output_file), sparse_labels, fmt='%d')
 
     
 
