@@ -7,6 +7,8 @@ root_directory = input('Enter path to directory of .csv files to convert to .npy
 def convert_to_csv(dirpath, file):
     G = np.loadtxt(os.path.join(dirpath, file), dtype=int)
 
+    G = G.reshape(-1, 1)  # Make column vector
+
     # parent = os.path.dirname(dirpath)
     np.save(os.path.join(dirpath, os.path.splitext(file)[0] + '.npy'), G)
     
