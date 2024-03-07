@@ -82,9 +82,15 @@ def main(input_dir, output_filename):
         edges_array = np.array(edges, dtype=np.int32)  # Convert to NumPy array
         graph_matrix = np.append(graph_matrix, edges_array, axis=0)
 
-    np.savetxt(output_filename, graph_matrix, fmt='%d')
+    edgelist_path = f'{output_filename}.edgelist'
+    npy_path = f'{output_filename}.npy'
+
+    np.savetxt(edgelist_path, graph_matrix, fmt='%d')
+    np.save(npy_path, graph_matrix)
 
     print(f'Processed {len(mtx_files)} .mtx files. Total edges: {len(graph_matrix)}')
+    print(f'Edge list saved to: {edgelist_path}')
+    print(f'NumPy array saved to: {npy_path}')
 
 
 if __name__ == "__main__":
