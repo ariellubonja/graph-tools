@@ -78,9 +78,9 @@ def main(input_dir, output_filename):
 
     for file_name in mtx_files:
         full_path = os.path.join(input_dir, file_name)
-        edges = np.fromiter(yield_edges_from_mtx(full_path), dtype=np.int32, count=-1)
-        edges = edges.reshape((-1, 2))  # Reshape to two columns
-        graph_matrix = np.append(graph_matrix, edges, axis=0)
+        edges = list(yield_edges_from_mtx(full_path))  # Collect edges into a list
+        edges_array = np.array(edges, dtype=np.int32)  # Convert to NumPy array
+        graph_matrix = np.append(graph_matrix, edges_array, axis=0)
 
     np.savetxt(output_filename, graph_matrix, fmt='%d')
 
