@@ -2,8 +2,7 @@
 .idea/
 
 .ipynb_checkpoints
-analysis/.ipynb_checkpoints
-creation/.ipynb_checkpoints
+*/.ipynb_checkpoints
 
 creation/erdos-renyi-graphs
 creation/erdos-renyi-networkit-graphs
